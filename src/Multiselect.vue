@@ -6,7 +6,7 @@
     @blur="searchable ? false : deactivate()"
     @keydown.self.down.prevent="pointerForward()"
     @keydown.self.up.prevent="pointerBackward()"
-    @keydown.enter.tab.stop.self="addPointerElement($event)"
+    @keydown.enter.tab.space.stop.self="addPointerElement($event)"
     @keyup.esc="deactivate()"
     class="multiselect">
       <slot name="caret" :toggle="toggle">
@@ -44,12 +44,13 @@
           :tabindex="tabindex"
           @input="updateSearch($event.target.value)"
           @focus.prevent="activate()"
-          @blur.prevent="deactivate()"
+          @blur.prevent="deactivateOnBlur ? deactivate() : false"
           @keyup.esc="deactivate()"
           @keydown.down.prevent="pointerForward()"
           @keydown.up.prevent="pointerBackward()"
           @keydown.enter.prevent.stop.self="addPointerElement($event)"
           @keydown.tab.prevent.stop.self="addPointerElement($event)"
+          @keydown.space.prevent.stop.self="addPointerElement($event)"
           @keydown.delete.stop="removeLastElement()"
           class="multiselect__input"/>
         <span
@@ -228,6 +229,10 @@
       tabindex: {
         type: Number,
         default: 0
+      },
+      deactivateOnBlur: {
+        type: Boolean,
+        default: true
       }
     },
     computed: {
