@@ -421,6 +421,12 @@ export default {
       this.search = query
     },
     /**
+     * Add space to search value if selectOnSpace false and user enters space
+     */
+    addSpaceToSearch () {
+      this.search = `${this.search} `
+    },
+    /**
      * Finds out if the given query is already present
      * in the available options
      * @param  {String}
