@@ -50,7 +50,7 @@
           @keydown.up.prevent="pointerBackward()"
           @keydown.enter.prevent.stop.self="addPointerElement($event)"
           @keydown.tab.prevent.stop.self="addPointerElement($event)"
-          @keydown.space.prevent.stop.self="addPointerElement($event)"
+          @keydown.space.prevent.stop.self="selectOnSpace ? addPointerElement($event) : addSpaceToSearch()"
           @keydown.delete.stop="removeLastElement()"
           class="multiselect__input"/>
         <span
@@ -231,6 +231,10 @@
         default: 0
       },
       deactivateOnBlur: {
+        type: Boolean,
+        default: true
+      },
+      selectOnSpace: {
         type: Boolean,
         default: true
       }
