@@ -35,7 +35,7 @@
           :name="name"
           :id="id"
           type="text"
-          autocomplete="off"
+          :autocomplete="autocomplete"
           :placeholder="placeholder"
           v-if="searchable"
           :style="inputStyle"
@@ -237,6 +237,10 @@
       selectOnSpace: {
         type: Boolean,
         default: true
+      },
+      autocomplete: {
+        type: String,
+        default: 'off'
       }
     },
     computed: {
