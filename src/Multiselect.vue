@@ -105,6 +105,11 @@
                 <slot name="noResult">No elements found. Consider changing the search query.</slot>
               </span>
             </li>
+            <li v-show="showNoOptions && (options.length === 0 && !search && !loading)">
+              <span class="multiselect__option">
+                <slot name="noOptions">No options available.</slot>
+              </span>
+            </li>
             <slot name="afterList"></slot>
           </ul>
         </div>
@@ -221,6 +226,10 @@
       openDirection: {
         type: String,
         default: ''
+      },
+      showNoOptions: {
+        type: Boolean,
+        default: true
       },
       showNoResults: {
         type: Boolean,
