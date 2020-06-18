@@ -357,7 +357,7 @@ export default {
     internalValue (newVal, oldVal) {
       /* istanbul ignore else */
       if (this.resetAfter && this.internalValue.length) {
-        this.search = ''
+        if (!this.preserveSearch) this.search = ''
         this.internalValue = []
       }
     },
@@ -496,7 +496,7 @@ export default {
       if (key === 'Tab' && !this.pointerDirty) return
       if (option.isTag) {
         this.$emit('tag', option.label, this.id)
-        this.search = ''
+        if (!this.preserveSearch) this.search = ''
         if (this.closeOnSelect && !this.multiple) this.deactivate()
       } else {
         const isSelected = this.isSelected(option)
@@ -512,7 +512,7 @@ export default {
         this.$emit('input', this.getValue(), this.id)
 
         /* istanbul ignore else */
-        if (this.clearOnSelect) this.search = ''
+        if (this.clearOnSelect && !this.preserveSearch) this.search = ''
       }
       /* istanbul ignore else */
       if (this.closeOnSelect) this.deactivate()
